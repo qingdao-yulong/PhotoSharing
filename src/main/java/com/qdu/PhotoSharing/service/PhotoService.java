@@ -18,4 +18,10 @@ public interface PhotoService {
 
     public List<Photo> getPhotosByUserIdAndDisplay(int userId, boolean display);
 
+    public Photo createPhoto(Photo photo);
+
+    public Photo editPhoto(Photo photo);
+
+    public void deletePhoto(int photo);
+
 }

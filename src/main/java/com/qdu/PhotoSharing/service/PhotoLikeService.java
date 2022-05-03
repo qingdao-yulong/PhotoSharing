@@ -12,4 +12,10 @@ public interface PhotoLikeService {
 
     public List<PhotoLike> getPhotoLikesByPhotoId(int photoId);
 
+    public PhotoLike createPhotoLike(PhotoLike photoLike);
+
+    public PhotoLike editPhotoLike(PhotoLike photoLike);
+
+    public void deletePhotoLike(int photoLike);
+
 }

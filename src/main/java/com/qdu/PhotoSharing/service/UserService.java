@@ -10,4 +10,10 @@ public interface UserService {
 
     public User getUserByFirstNameAndLastName(String firstName, String lastName);
 
+    public User createUser(User user);
+
+    public User editUser(User user);
+
+    public void deleteUser(int user);
+
 }
