@@ -8,7 +8,7 @@ class PhotoSharingAppApplicationTests {
 
 	@Test
 	void contextLoads() {
-		
+
 	}
 
 }
