@@ -40,4 +40,12 @@ public class AuthenticationController {
             return "authentication/login_error";
         }
     }
+
+    @GetMapping("/logout")
+    public String logout(Model model, HttpServletRequest req) {
+        HttpSession httpSession = req.getSession();
+        httpSession.invalidate();
+
+        return "index";
+    }
 }

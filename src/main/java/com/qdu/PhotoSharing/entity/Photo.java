@@ -72,4 +72,12 @@ public class Photo {
     public void setDisplay(Boolean display) {
         this.display = display;
     }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
 }

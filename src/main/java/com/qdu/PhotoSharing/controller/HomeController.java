@@ -24,7 +24,7 @@ public class HomeController {
     public String homePage(Model model) {
         List<Photo> photoList = photoService.getPhotosByDisplay(true);
 
-        model.addAttribute("photos", photoList);
+            model.addAttribute("photos", photoList);
 
         return "index";
     }
