@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="components/head.html :: head"></div>
+<body style="background-color: peachpuff;">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="navbar">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Mooks and Bovies</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/books}">Books</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/movies}">Movies</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/directors}">Directors</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/actors}">Actors</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/authors}">Authors</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/publishers}">Publishers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/screenwriters}">Screenwriters</a>
+                </li>
+                <li class="nav-item" th:if="null == ${session.user}">
+                    <a class="nav-link" th:href="@{/login}">Login</a>
+                </li>
+                <li class="nav-item" th:if="null == ${session.user}">
+                    <a class="nav-link" th:href="@{/register}">Register</a>
+                </li>
+                <li class="nav-item" th:if="null != ${session.user}">
+                    <a class="nav-link" th:href="@{/logout}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+</body>
+</html>

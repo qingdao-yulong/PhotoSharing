@@ -15,6 +15,9 @@ public class Photo {
     private String category;
     private Boolean display;
 
+    @Transient
+    private int likes;
+
     public Photo() {
     }
 
