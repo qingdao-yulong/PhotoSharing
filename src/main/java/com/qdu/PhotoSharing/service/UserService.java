@@ -6,6 +6,8 @@ public interface UserService {
 
     public User getUserById(int id);
 
+    public User getUserByEmail(String email);
+
     public User getUserByEmailAndPassword(String email, String password);
 
     public User getUserByFirstNameAndLastName(String firstName, String lastName);

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:replace="components/head.html :: head"></title>
+</head>
+<body style="background-color: peachpuff;">
+<div th:replace="components/navbar.html :: navbar"></div>
+
+<div class="container">
+
+    <h1>Upload a photo</h1>
+
+    <form th:action="@{/directors/create}" method="post" class="rounded border border-primary" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="fileImage">Photo</label>
+            <input th:class="'form-control'" type="file" name="fileImage" id="fileImage" alt="image">
+        </div>
+
+        <div class="form-group">
+            <label for="display">Public</label>
+            <input th:class="'form-control'" checked type="checkbox" name="display" id="display" alt="display">
+        </div>
+
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select name="category" id="category">
+                <option value="nature">Nature</option>
+                <option value="landscape">Landscape</option>
+                <option value="person">Person</option>
+                <option value="animal">Animal</option>
+            </select>
+        </div>
+
+        <button class="btn btn-primary" id="submit-form" type="submit">Save</button>
+    </form>
+</div>
+
+</body>
+</html>

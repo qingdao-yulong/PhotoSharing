@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -47,5 +48,29 @@ public class AuthenticationController {
         httpSession.invalidate();
 
         return "index";
+    }
+
+    @GetMapping("/register")
+    public String toRegister() {
+        return "authentication/register";
+    }
+
+    @PostMapping("/register")
+    public String register(Model model, HttpServletRequest req, @ModelAttribute User user) {
+        HttpSession httpSession = req.getSession();
+        User u = userService.getUserByEmail(user.getEmail());
+        if (null != u) {
+            return "error";
+        } else {
+            user.setSuperUser(false);
+            User newUser = userService.createUser(user);
+            if (null != newUser) {
+                httpSession.setAttribute("user", newUser);
+                httpSession.setAttribute("admin", 0);
+                return "index";
+            } else {
+                return "error";
+            }
+        }
     }
 }

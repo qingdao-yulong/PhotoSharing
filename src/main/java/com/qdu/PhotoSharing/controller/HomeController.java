@@ -26,7 +26,9 @@ public class HomeController {
 
         photoList.sort(Comparator.comparing(Photo::getLikes));
 
+        if (photoList.size() > 9) {
         photoList.subList(0, 9);
+        }
 
         model.addAttribute("photos", photoList);
 

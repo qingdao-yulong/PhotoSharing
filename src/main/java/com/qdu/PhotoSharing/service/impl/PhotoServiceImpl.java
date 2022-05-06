@@ -13,12 +13,10 @@ import java.util.List;
 public class PhotoServiceImpl implements PhotoService {
 
     PhotoRepository photoRepository;
-    PhotoLikeHelper photoLikeHelper;
 
     @Autowired
-    public PhotoServiceImpl(PhotoRepository photoRepository, PhotoLikeHelper photoLikeHelper) {
+    public PhotoServiceImpl(PhotoRepository photoRepository) {
         this.photoRepository = photoRepository;
-        this.photoLikeHelper = photoLikeHelper;
     }
 
     @Override
@@ -28,58 +26,37 @@ public class PhotoServiceImpl implements PhotoService {
 
     @Override
     public List<Photo> getAllPhotos() {
-        List<Photo> photoList =  photoRepository.findAll();
-        photoLikeHelper.calculatePhotoLikesForList(photoList);
-
-        return photoList;
+        return photoRepository.findAll();
     }
 
     @Override
     public List<Photo> getPhotosByUserId(int userId) {
-        List<Photo> photoList = photoRepository.getPhotosByUserId(userId);
-        photoLikeHelper.calculatePhotoLikesForList(photoList);
-
-        return photoList;
+        return photoRepository.getPhotosByUserId(userId);
     }
 
     @Override
     public List<Photo> getPhotosByCategory(String category) {
-        List<Photo> photoList = photoRepository.getPhotosByCategory(category);
-        photoLikeHelper.calculatePhotoLikesForList(photoList);
-
-        return photoList;
+        return photoRepository.getPhotosByCategory(category);
     }
 
     @Override
     public List<Photo> getPhotosByDisplay(boolean display) {
-        List<Photo> photoList = photoRepository.getPhotosByDisplay(display);
-        photoLikeHelper.calculatePhotoLikesForList(photoList);
-
-        return photoList;
+        return photoRepository.getPhotosByDisplay(display);
     }
 
     @Override
     public List<Photo> getPhotosByUserIdAndDisplay(int userId, boolean display) {
-        List<Photo> photoList = photoRepository.getPhotosByUserIdAndDisplay(userId, display);
-        photoLikeHelper.calculatePhotoLikesForList(photoList);
-
-        return photoList;
+        return photoRepository.getPhotosByUserIdAndDisplay(userId, display);
     }
 
     @Override
     public Photo createPhoto(Photo photo) {
-        Photo newPhoto = photoRepository.save(photo);
-        newPhoto.setLikes(0);
-
-        return newPhoto;
+        return photoRepository.save(photo);
     }
 
     @Override
     public Photo editPhoto(Photo photo) {
-        Photo updated = photoRepository.save(photo);
-        photoLikeHelper.calculatePhotoLikes(updated);
-
-        return updated;
+        return photoRepository.save(photo);
     }
 
     @Override
