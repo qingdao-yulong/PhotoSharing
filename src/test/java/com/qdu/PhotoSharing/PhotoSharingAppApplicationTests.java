@@ -24,7 +24,7 @@ class PhotoSharingAppApplicationTests {
 	}
 
 	@Test
-	void testDirectorCrud() {
+	void testUserCrud() {
 		User user =  userService.getUserById(1);
 		System.out.println(user);
 	}

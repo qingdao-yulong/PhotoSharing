@@ -24,7 +24,11 @@ public class HomeController {
     public String homePage(Model model) {
         List<Photo> photoList = photoService.getPhotosByDisplay(true);
 
-            model.addAttribute("photos", photoList);
+        photoList.sort(Comparator.comparing(Photo::getLikes));
+
+        photoList.subList(0, 9);
+
+        model.addAttribute("photos", photoList);
 
         return "index";
     }

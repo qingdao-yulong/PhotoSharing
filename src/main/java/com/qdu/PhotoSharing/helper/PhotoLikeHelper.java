@@ -20,6 +20,10 @@ public class PhotoLikeHelper {
         this.photoLikeService = photoLikeService;
     }
 
+    /**
+     * Calculates the number of likes against a photo and stores it against the Photo object for a list of Photos
+     * @param photoList
+     */
     public void calculatePhotoLikesForList(List<Photo> photoList) {
         for (Photo p : photoList) {
             List<PhotoLike> photoLikeList = photoLikeService.getPhotoLikesByPhotoId(p.getId());
@@ -29,6 +33,10 @@ public class PhotoLikeHelper {
         }
     }
 
+    /**
+     * Calculates the number of likes against a photo and stores it against the Photo object for a single Photo
+     * @param photo
+     */
     public void calculatePhotoLikes(Photo photo) {
         List<PhotoLike> photoLikeList = photoLikeService.getPhotoLikesByPhotoId(photo.getId());
         int size = photoLikeList.size();
