@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,10 +17,12 @@ import javax.servlet.http.HttpSession;
 public class AuthenticationController {
 
     UserService userService;
+    HomeController homeController;
 
     @Autowired
-    public AuthenticationController(UserService userService) {
+    public AuthenticationController(UserService userService, HomeController homeController) {
         this.userService = userService;
+        this.homeController = homeController;
     }
 
     @GetMapping("/login")
@@ -36,7 +39,7 @@ public class AuthenticationController {
             if (user.isSuperUser()) {
                 httpSession.setAttribute("admin", 1);
             }
-            return "index";
+            return homeController.homePage(model);
         } else {
             return "authentication/login_error";
         }
@@ -47,7 +50,7 @@ public class AuthenticationController {
         HttpSession httpSession = req.getSession();
         httpSession.invalidate();
 
-        return "index";
+        return homeController.homePage(model);
     }
 
     @GetMapping("/register")
@@ -67,7 +70,7 @@ public class AuthenticationController {
             if (null != newUser) {
                 httpSession.setAttribute("user", newUser);
                 httpSession.setAttribute("admin", 0);
-                return "index";
+                return homeController.homePage(model);
             } else {
                 return "error";
             }

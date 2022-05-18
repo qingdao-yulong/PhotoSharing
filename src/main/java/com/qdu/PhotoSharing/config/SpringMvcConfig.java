@@ -19,11 +19,11 @@ public class SpringMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        try {
-//            registry.addResourceHandler("/static/img/**")
-//                    .addResourceLocations("file:" + ResourceUtils.getURL("classpath:static/img/").getPath());
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            registry.addResourceHandler("/static/img/**")
+                    .addResourceLocations("file:" + ResourceUtils.getURL("classpath:static/img/").getPath());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -25,12 +25,12 @@ public class PhotoLikeServiceImpl implements PhotoLikeService {
 
     @Override
     public List<PhotoLike> getPhotoLikesByUserId(int userId) {
-        return plr.getPhotoLikeByUser(userId);
+        return plr.getPhotoLikesByUserId(userId);
     }
 
     @Override
     public List<PhotoLike> getPhotoLikesByPhotoId(int photoId) {
-        return plr.getPhotoLikeByPicture(photoId);
+        return plr.getPhotoLikesByPictureId(photoId);
     }
 
     @Override

@@ -1,0 +1,22 @@
+.photo-img:hover {
+    opacity: 0.3;
+}
+
+.photo-img:hover + .photo-category {
+    display: block;
+}
+
+.photo-category:hover + .photo-img {
+    opacity: 0.3;
+}
+
+.photo-card {
+    position: relative;
+    text-align: center;
+    color: black
+}
+
+.photo-category {
+    /*display: none;*/
+    text-align: center;
+}

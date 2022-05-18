@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title th:replace="components/head.html :: head"></title>
+    <link rel="stylesheet" th:href="@{/css/index.css}">
 </head>
 <body style="background-color: peachpuff;">
 <div th:replace="components/navbar.html :: navbar"></div>
@@ -14,11 +15,11 @@
         <button class="btn btn-primary">Upload</button>
     </a>
 
-    <div class="row" style="height: 80%">
-        <div class="col-md-4" th:each="p : ${photos}" th:if="!${photos.isEmpty()}">
+    <div class="row">
+        <div class="col-md-4 col-lg-3 col-sm-6 col-xs-8 text-center" th:each="p : ${photos}" th:if="!${photos.isEmpty()}">
             <div class="film-card" style="margin-top: 20px">
                 <a>
-                    <img class="photo-img" th:src="@{/static/img/photos/{path}(path=${p.filePath})}"
+                    <img style="width: 50%; height: 100%" class="photo-img" th:src="@{/static/img/photos/{path}(path=${p.filePath})}"
                          alt="photo-image">
                     <div class="photo-category" th:text="${p.category}"></div>
                 </a>

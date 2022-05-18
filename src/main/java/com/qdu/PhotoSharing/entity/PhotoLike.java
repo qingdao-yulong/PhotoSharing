@@ -3,22 +3,22 @@ package com.qdu.PhotoSharing.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "PictureLikes")
+@Table(name = "picture_likes")
 public class PhotoLike {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int picture;
-    private int user;
+    private int pictureId;
+    private int userId;
     private String likedAt;
 
     public PhotoLike() {
     }
 
-    public PhotoLike(int picture, int user, String likedAt) {
-        this.picture = picture;
-        this.user = user;
+    public PhotoLike(int pictureId, int userId, String likedAt) {
+        this.pictureId = pictureId;
+        this.userId = userId;
         this.likedAt = likedAt;
     }
 
@@ -30,20 +30,20 @@ public class PhotoLike {
         this.id = id;
     }
 
-    public int getPicture() {
-        return picture;
+    public int getPictureId() {
+        return pictureId;
     }
 
-    public void setPicture(int picture) {
-        this.picture = picture;
+    public void setPictureId(int pictureId) {
+        this.pictureId = pictureId;
     }
 
-    public int getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser(int user) {
-        this.user = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getLikedAt() {

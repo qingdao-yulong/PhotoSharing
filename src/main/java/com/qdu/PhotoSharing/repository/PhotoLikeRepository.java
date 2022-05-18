@@ -9,8 +9,8 @@ import java.util.List;
 @Repository
 public interface PhotoLikeRepository extends JpaRepository<PhotoLike, Integer> {
 
-    public List<PhotoLike> getPhotoLikeByUser(int user);
+    public List<PhotoLike> getPhotoLikesByUserId(int user);
 
-    public List<PhotoLike> getPhotoLikeByPicture(int picture);
+    public List<PhotoLike> getPhotoLikesByPictureId(int picture);
 
 }

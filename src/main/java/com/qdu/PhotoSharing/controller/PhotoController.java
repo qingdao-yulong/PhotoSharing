@@ -13,7 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -51,8 +53,10 @@ public class PhotoController {
 
     @PostMapping("/{userId}/photoUpload")
     public RedirectView photoUpload(Model model, @ModelAttribute Photo photo, @PathVariable int userId, @RequestParam("fileImage") MultipartFile file) throws IOException {
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         String fileName = puh.saveImage(file);
         photo.setFilePath(fileName);
+        photo.setUploadedAt(date);
         photoService.createPhoto(photo);
 
         return new RedirectView("/account/" + userId + "/photos");
