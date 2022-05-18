@@ -15,9 +15,9 @@ import java.util.Objects;
 @Service
 public class PhotoUploadHelper {
 
-    public String saveImage(String module, MultipartFile image) throws IOException {
+    public String saveImage(MultipartFile image) throws IOException {
             String fileName = StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
-            String saveDir = "src/main/resources/static/img/" + module;
+            String saveDir = "src/main/resources/static/img/photos/";
             saveFile(saveDir, fileName, image);
             return fileName;
     }

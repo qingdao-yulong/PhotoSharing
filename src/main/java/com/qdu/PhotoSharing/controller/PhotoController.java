@@ -51,7 +51,7 @@ public class PhotoController {
 
     @PostMapping("/{userId}/photoUpload")
     public RedirectView photoUpload(Model model, @ModelAttribute Photo photo, @PathVariable int userId, @RequestParam("fileImage") MultipartFile file) throws IOException {
-        String fileName = puh.saveImage("photos/", file);
+        String fileName = puh.saveImage(file);
         photo.setFilePath(fileName);
         photoService.createPhoto(photo);
 
