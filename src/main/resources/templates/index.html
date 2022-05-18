@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title th:replace="components/head.html :: head"></title>
@@ -7,7 +7,29 @@
 <body style="background-color: peachpuff;">
 <div th:replace="components/navbar.html :: navbar"></div>
 
-<h1>Photo Sharing</h1>
+<div class="container">
+    <h2 class="text-center" style="margin: 30px auto">Shoto Pharing</h2>
+
+    <a th:href="@{/account/{userId}/photoUpload(userId=${session.user.id})}" th:if="null != ${session.user}" style="float: right">
+        <button class="btn btn-primary">Upload</button>
+    </a>
+
+    <div class="row" style="height: 80%">
+        <div class="col-md-4" th:each="p : ${photos}" th:if="!${photos.isEmpty()}">
+            <div class="film-card" style="margin-top: 20px">
+                <a>
+                    <img class="photo-img" th:src="@{/static/img/photos/{path}(path=${p.filePath})}"
+                         alt="photo-image">
+                    <div class="photo-category" th:text="${p.category}"></div>
+                </a>
+            </div>
+        </div>
+
+        <div th:if="${photos.isEmpty()}" style="margin-top: 10%" class="text-center">
+            <h3>There aren't any photos yet, get posting to fill this page up!</h3>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

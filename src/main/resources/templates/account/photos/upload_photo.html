@@ -2,16 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <title>Photo Upload</title>
     <title th:replace="components/head.html :: head"></title>
+    <link rel="stylesheet" th:href="@{/css/photoUpload.css}"/>
 </head>
 <body style="background-color: peachpuff;">
 <div th:replace="components/navbar.html :: navbar"></div>
 
 <div class="container">
 
-    <h1>Upload a photo</h1>
+    <h1 class="text-center">Upload a photo</h1>
 
-    <form th:action="@{/directors/create}" method="post" class="rounded border border-primary" enctype="multipart/form-data">
+    <form id="upload-form" th:action="@{/account/{userId}/photoUpload(userId=${session.user.id})}" method="post" class="rounded border border-primary" enctype="multipart/form-data">
         <div class="form-group">
             <label for="fileImage">Photo</label>
             <input th:class="'form-control'" type="file" name="fileImage" id="fileImage" alt="image">
@@ -19,7 +21,7 @@
 
         <div class="form-group">
             <label for="display">Public</label>
-            <input th:class="'form-control'" checked type="checkbox" name="display" id="display" alt="display">
+            <input checked type="checkbox" name="display" id="display" alt="display">
         </div>
 
         <div class="form-group">
@@ -32,7 +34,9 @@
             </select>
         </div>
 
-        <button class="btn btn-primary" id="submit-form" type="submit">Save</button>
+        <div class="text-center">
+            <button class="btn btn-primary" id="submit-form" type="submit">Save</button>
+        </div>
     </form>
 </div>
 
