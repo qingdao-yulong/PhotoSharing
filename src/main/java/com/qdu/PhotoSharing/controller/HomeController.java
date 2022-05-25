@@ -1,7 +1,9 @@
 package com.qdu.PhotoSharing.controller;
 
 import com.qdu.PhotoSharing.entity.Photo;
+import com.qdu.PhotoSharing.helper.PhotoUserHelper;
 import com.qdu.PhotoSharing.service.PhotoService;
+import com.qdu.PhotoSharing.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,15 +16,19 @@ import java.util.List;
 public class HomeController {
 
     PhotoService photoService;
+    PhotoUserHelper photoUserHelper;
 
     @Autowired
-    public HomeController(PhotoService photoService) {
+    public HomeController(PhotoService photoService, PhotoUserHelper photoUserHelper) {
         this.photoService = photoService;
+        this.photoUserHelper = photoUserHelper;
     }
 
     @GetMapping("")
     public String homePage(Model model) {
         List<Photo> photoList = photoService.getPhotosByDisplay(true);
+
+        photoUserHelper.linkPhotoListWithUsers(photoList);
 
         photoList.sort(Comparator.comparing(Photo::getLikes));
 
