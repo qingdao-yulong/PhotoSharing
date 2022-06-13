@@ -21,6 +21,9 @@
                     <a class="nav-link" th:href="@{/account/{userId}/photos(userId=${session.user.id})}">User Photos</a>
                 </li>
                 <li class="nav-item" th:if="null != ${session.user}">
+                    <a class="nav-link" th:href="@{/account/{userId}/photos/liked(userId=${session.user.id})}">Liked Photos</a>
+                </li>
+                <li class="nav-item" th:if="null != ${session.user}">
                     <a class="nav-link" th:href="@{/account/{userId}/photoUpload(userId=${session.user.id})}">Upload</a>
                 </li>
                 <li class="nav-item" th:if="null != ${session.user}">

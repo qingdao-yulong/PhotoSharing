@@ -1,13 +1,25 @@
-@media screen and (min-width: 900px) {
- #upload-form {
-     padding: 3%;
- }
+/*@media screen and (max-width: 1200px) {*/
+    #upload-form {
+        width: 33%;
+        margin: 10% auto 0 auto;
+        padding: 1%
+    }
+/*}*/
+
+@media screen and (max-width: 1000px) {
+    #upload-form {
+        width: 80%;
+        margin: 10% auto 0 auto;
+        padding: 1%
+    }
 }
 
-#upload-form {
-    width: 33%;
-    margin: 10% auto 0 auto;
-    padding: 1%
+@media screen and (max-width: 550px) {
+    #upload-form {
+        width: 100%;
+        margin: 10% auto 0 auto;
+        padding: 1%
+    }
 }
 
 .form-group {

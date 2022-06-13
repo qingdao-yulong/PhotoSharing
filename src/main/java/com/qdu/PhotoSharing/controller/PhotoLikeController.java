@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -28,11 +29,17 @@ public class PhotoLikeController {
     }
 
     @PostMapping("photo/like/{p}")
+    @ResponseBody
     public void likePhoto(Model model, @PathVariable int p, HttpServletRequest req) {
         HttpSession session = req.getSession();
         User u = (User) session.getAttribute("user");
-        String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-        PhotoLike pl = new PhotoLike(p, u.getId(), date);
-        photoLikeService.createPhotoLike(pl);
+        PhotoLike photolike = photoLikeService.getPhotoLikeByPictureIdAndUserId(p, u.getId());
+        if (null != photolike) {
+            photoLikeService.deletePhotoLike(photolike.getId());
+        } else {
+            String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+            PhotoLike pl = new PhotoLike(p, u.getId(), date);
+            photoLikeService.createPhotoLike(pl);
+        }
     }
 }

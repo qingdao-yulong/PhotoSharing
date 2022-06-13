@@ -34,6 +34,11 @@ public class PhotoLikeServiceImpl implements PhotoLikeService {
     }
 
     @Override
+    public PhotoLike getPhotoLikeByPictureIdAndUserId(int picture, int user) {
+        return plr.getPhotoLikeByPictureIdAndUserId(picture, user);
+    }
+
+    @Override
     public PhotoLike createPhotoLike(PhotoLike photoLike) {
         return plr.save(photoLike);
     }
@@ -46,5 +51,15 @@ public class PhotoLikeServiceImpl implements PhotoLikeService {
     @Override
     public void deletePhotoLike(int photoLike) {
         plr.deleteById(photoLike);
+    }
+
+    @Override
+    public void deletePhotoLikesByPictureId(int picture) {
+        plr.deletePhotoLikesByPictureId(picture);
+    }
+
+    @Override
+    public PhotoLike getPhotoLikeByUserIdAndLikedAt(int user, String likedAt) {
+        return plr.getPhotoLikeByUserIdAndLikedAt(user, likedAt);
     }
 }

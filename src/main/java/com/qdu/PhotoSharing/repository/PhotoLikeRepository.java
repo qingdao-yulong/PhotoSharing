@@ -13,4 +13,9 @@ public interface PhotoLikeRepository extends JpaRepository<PhotoLike, Integer> {
 
     public List<PhotoLike> getPhotoLikesByPictureId(int picture);
 
+    public PhotoLike getPhotoLikeByPictureIdAndUserId(int picture, int user);
+
+    public void deletePhotoLikesByPictureId(int picture);
+
+    public PhotoLike getPhotoLikeByUserIdAndLikedAt(int user, String likedAt);
 }

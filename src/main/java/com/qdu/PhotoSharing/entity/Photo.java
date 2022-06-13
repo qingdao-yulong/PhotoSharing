@@ -19,9 +19,22 @@ public class Photo {
 
     @Transient
     private int likes;
-
     @Transient
     private User user;
+    @Transient
+    private int liked;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getLiked() {
+        return liked;
+    }
+
+    public void setLiked(int liked) {
+        this.liked = liked;
+    }
 
     public User getUser() {
         return user;

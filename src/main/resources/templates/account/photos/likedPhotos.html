@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:replace="components/head.html :: head"></title>
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+</head>
+<body style="background-color: peachpuff;">
+<div th:replace="components/navbar.html :: navbar"></div>
+
+<div class="container">
+    <h2 class="text-center" style="margin: 30px auto">Liked Photos</h2>
+
+    <div class="row image-row">
+        <div class="col-md-4 col-lg-3 col-sm-6 col-xs-8 text-center" th:each="p : ${photos}"
+             th:if="!${photos.isEmpty()}">
+            <div class="photo-card" th:id="'photo-card-'+${p.id}" style="margin-top: 20px">
+                <a>
+                    <img class="photo-img" th:src="@{/static/img/photos/{path}(path=${p.filePath})}"
+                         alt="photo-image">
+                    <div class="photo-info">
+                        <p class="photo-user" th:text="'Author: '+${p.user.firstName}+' '+${p.user.lastName}"></p>
+                        <p>Likes: <span class="photo-likes" th:text="${p.likes}"></span></p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div th:if="${photos.isEmpty()}" style="margin-top: 10%" class="text-center">
+            <h3>You haven't liked any photos yet.</h3>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        if (!window.matchMedia("(max-width: 767px)").matches) {
+            $('img').hover(function () {
+                $(this).css('z-index', '1');
+                $(this).parent().css('font-weight', 'bold');
+                $(this).animate({
+                    width: "300px",
+                    height: "300px",
+                }, 300);
+            }, function () {
+                $(this).css('z-index', '0');
+                $(this).parent().css('font-weight', 'unset');
+                $(this).animate({
+                    width: "200px",
+                    height: "200px",
+                }, 300);
+            });
+        } else {
+            alert('Mobile device');
+        }
+    });
+</script>
+</body>
+</html>

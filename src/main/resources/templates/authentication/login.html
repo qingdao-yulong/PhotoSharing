@@ -4,24 +4,25 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <title th:replace="components/head.html :: head"></title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body style="background-color: peachpuff;">
 <div th:replace="components/navbar.html :: navbar"></div>
 
 <div class="container">
 
-    <h1>Login</h1>
+    <h1 class="text-center" style="margin: 30px auto">Login</h1>
 
-    <form method="post" id="login-form" style="width: 50%" class="rounded border border-primary">
+    <form method="post" id="login-form" class="rounded border border-primary">
         <div class="form-group">
             <label for="email">Email:</label>
-            <input class="form-control" type="text" id="email" name="email">
+            <input class="form-control" value="admin@admin.com" type="text" id="email" name="email">
         </div>
         <div class="form-group">
             <label for="password">Password:</label>
-            <input class="form-control" type="password" id="password" name="password">
+            <input class="form-control" th:value="admin" type="password" id="password" name="password">
         </div>
-        <button class="btn btn-primary" id="submit-form" type="submit">Login</button>
+        <button class="btn btn-primary text-center" id="submit-form" type="submit">Login</button>
     </form>
 </div>
 </body>
