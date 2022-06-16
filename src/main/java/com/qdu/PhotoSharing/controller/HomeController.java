@@ -45,8 +45,6 @@ public class HomeController {
 
         photoLikeHelper.calculatePhotoLikesForList(photoList);
 
-        List<Photo> naturePhotoList = (List<Photo>) photoList.stream().filter(p -> !p.getCategory().equals("nature"));
-
         if (photoList.size() > 6) {
         photoList.subList(0, 6);
         }
