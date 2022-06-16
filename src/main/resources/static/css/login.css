@@ -1,6 +1,17 @@
-#login-form {
-    margin: 50px auto;
-    width: 50%;
+@media screen and (min-width: 550px) {
+    #login-form {
+        width: 80%;
+        margin: 10% auto 0 auto;
+        padding: 1%
+    }
+}
+
+@media screen and (max-width: 550px) {
+    #login-form {
+        width: 100%;
+        margin: 10% auto 0 auto;
+        padding: 1%
+    }
 }
 
 .form-group {

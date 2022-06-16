@@ -1,8 +1,18 @@
-#register-form {
-    margin: 50px auto;
-    width: 50%;
+@media screen and (min-width: 550px) {
+    #register-form {
+        width: 50%;
+        margin: 30px auto 40px auto;
+        padding: 1%;
+    }
 }
 
+@media screen and (max-width: 550px) {
+    #register-form {
+        width: 100%;
+        margin: 30px auto 40px auto;
+        padding: 1%;
+    }
+}
 .form-group {
     margin: 30px;;
 }
