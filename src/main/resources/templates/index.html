@@ -11,7 +11,7 @@
 <div class="container">
     <h2 class="text-center" style="margin: 30px auto">Shoto Pharing</h2>
 
-    <a th:href="@{/account/{userId}/photoUpload(userId=${session.user.id})}" th:if="null != ${session.user}"
+    <a th:href="@{/account/{userId}/photoUpload(userId=${session.user.id})}" th:if="null != ${session.user} and ${session.canUpload} != 0"
        style="float: right; margin-bottom: 20px">
         <button class="btn btn-primary">Upload</button>
     </a>

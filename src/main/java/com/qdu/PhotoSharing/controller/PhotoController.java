@@ -62,19 +62,17 @@ public class PhotoController {
     }
 
     @PostMapping("/{userId}/photoUpload")
-    public RedirectView photoUpload(Model model, @ModelAttribute Photo photo, @PathVariable int userId, @RequestParam("fileImage") MultipartFile file) throws IOException {
+    public RedirectView photoUpload(Model model, @ModelAttribute Photo photo, @PathVariable int userId, @RequestParam("fileImage") MultipartFile file, HttpServletRequest req) throws IOException {
+        HttpSession session = req.getSession();
         String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         String fileName = puh.saveImage(file);
         photo.setFilePath(fileName);
         photo.setUploadedAt(date);
         photoService.createPhoto(photo);
+        session.removeAttribute("canUpload");
+        session.setAttribute("canUpload", 0);
 
         return new RedirectView("/account/" + userId + "/photos");
-    }
-
-    @GetMapping("/{userId}/photo/{photoId}/delete")
-    public void deletePhoto(@PathVariable int photoId, @PathVariable int userId) {
-        photoService.deletePhoto(photoId);
     }
 
     @GetMapping("/{userId}/photos/liked")
@@ -135,7 +133,14 @@ public class PhotoController {
     @GetMapping("/photo/delete/{p}")
     @ResponseBody
     @Transactional
-    public void deletePhoto(Model model, @PathVariable int p) {
+    public void deletePhoto(Model model, @PathVariable int p,HttpServletRequest req) {
+        HttpSession session = req.getSession();
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        Photo photo = photoService.getPhotoById(p);
+        if (photo.getUploadedAt().equals(date)) {
+            session.removeAttribute("canUpload");
+            session.setAttribute("canUpload", 1);
+        }
         photoLikeService.deletePhotoLikesByPictureId(p);
         photoService.deletePhoto(p);
     }

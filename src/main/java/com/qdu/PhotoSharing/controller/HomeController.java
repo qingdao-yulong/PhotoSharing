@@ -45,13 +45,10 @@ public class HomeController {
 
         photoLikeHelper.calculatePhotoLikesForList(photoList);
 
-//        photoList.sort(Comparator.comparing(Photo::getLikes));
+        List<Photo> naturePhotoList = (List<Photo>) photoList.stream().filter(p -> !p.getCategory().equals("nature"));
 
-        // Reverse the list so the order is desc
-//        Collections.reverse(photoList);
-
-        if (photoList.size() > 9) {
-        photoList.subList(0, 9);
+        if (photoList.size() > 6) {
+        photoList.subList(0, 6);
         }
 
         if (null != session.getAttribute("user")) {
@@ -87,11 +84,6 @@ public class HomeController {
         photoUserHelper.linkPhotoListWithUsers(photoList);
 
         photoLikeHelper.calculatePhotoLikesForList(photoList);
-
-//        photoList.sort(Comparator.comparing(Photo::getLikes));
-
-        // Reverse the list so the order is desc
-//        Collections.reverse(photoList);
 
         if (photoList.size() > 9) {
             photoList.subList(0, 9);

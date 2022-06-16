@@ -1,8 +1,10 @@
 package com.qdu.PhotoSharing.controller;
 
+import com.qdu.PhotoSharing.entity.Photo;
 import com.qdu.PhotoSharing.entity.PhotoLike;
 import com.qdu.PhotoSharing.entity.User;
 import com.qdu.PhotoSharing.service.PhotoLikeService;
+import com.qdu.PhotoSharing.service.PhotoService;
 import com.qdu.PhotoSharing.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,12 +25,14 @@ public class AuthenticationController {
     UserService userService;
     HomeController homeController;
     PhotoLikeService photoLikeService;
+    PhotoService photoService;
 
     @Autowired
-    public AuthenticationController(UserService userService, HomeController homeController, PhotoLikeService photoLikeService) {
+    public AuthenticationController(UserService userService, HomeController homeController, PhotoLikeService photoLikeService, PhotoService photoService) {
         this.userService = userService;
         this.homeController = homeController;
         this.photoLikeService = photoLikeService;
+        this.photoService = photoService;
     }
 
     @GetMapping("/login")
@@ -47,10 +51,16 @@ public class AuthenticationController {
             }
             String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
             PhotoLike photoLike = photoLikeService.getPhotoLikeByUserIdAndLikedAt(user.getId(), date);
+            Photo photo = photoService.getPhotoByUserIdAndUploadedAt(user.getId(), date);
             if (null != photoLike) {
                 httpSession.setAttribute("canLike", 0);
             } else {
                 httpSession.setAttribute("canLike", 1);
+            }
+            if (null != photo) {
+                httpSession.setAttribute("canUpload", 0);
+            } else {
+                httpSession.setAttribute("canUpload", 1);
             }
             return homeController.homePage(model, req);
         } else {

@@ -18,6 +18,10 @@ public interface PhotoService {
 
     public List<Photo> getPhotosByUserIdAndDisplay(int userId, boolean display);
 
+    public Photo getPhotoByUserIdAndUploadedAt(int user, String date);
+
+    public List<Photo> getPhotosByDisplayAndCategory(boolean display, String category);
+
     public Photo createPhoto(Photo photo);
 
     public Photo editPhoto(Photo photo);

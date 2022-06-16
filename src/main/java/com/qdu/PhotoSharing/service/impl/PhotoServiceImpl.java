@@ -50,6 +50,16 @@ public class PhotoServiceImpl implements PhotoService {
     }
 
     @Override
+    public Photo getPhotoByUserIdAndUploadedAt(int user, String date) {
+        return photoRepository.getPhotoByUserIdAndUploadedAt(user, date);
+    }
+
+    @Override
+    public List<Photo> getPhotosByDisplayAndCategory(boolean display, String category) {
+        return photoRepository.getPhotosByDisplayAndCategory(display, category);
+    }
+
+    @Override
     public Photo createPhoto(Photo photo) {
         return photoRepository.save(photo);
     }

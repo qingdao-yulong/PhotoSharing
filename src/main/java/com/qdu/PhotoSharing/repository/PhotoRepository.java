@@ -16,4 +16,8 @@ public interface PhotoRepository extends JpaRepository<Photo, Integer> {
     public List<Photo> getPhotosByDisplay(boolean display);
 
     public List<Photo> getPhotosByUserIdAndDisplay(int userId, Boolean display);
+
+    public Photo getPhotoByUserIdAndUploadedAt(int user, String date);
+
+    public List<Photo> getPhotosByDisplayAndCategory(boolean display, String category);
 }

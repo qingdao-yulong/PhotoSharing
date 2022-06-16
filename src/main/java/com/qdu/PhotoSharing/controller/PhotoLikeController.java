@@ -38,14 +38,12 @@ public class PhotoLikeController {
             photoLikeService.deletePhotoLike(photolike.getId());
             session.removeAttribute("canLike");
             session.setAttribute("canLike", 1);
-            System.out.println(session.getAttribute("canLike"));
         } else {
             String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
             PhotoLike pl = new PhotoLike(p, u.getId(), date);
             photoLikeService.createPhotoLike(pl);
             session.removeAttribute("canLike");
             session.setAttribute("canLike", 0);
-            System.out.println(session.getAttribute("canLike"));
         }
     }
 }
